@@ -4,16 +4,16 @@
 public class HTTP_ServerC {
 
     /* CONSTANTS */
-    private int OK = 200;
-    private int CREATED = 201;
-    private int ACCEPTED = 202;
-    private int NO_CONTENT = 204;
-    private int BAD_REQUEST = 400;
-    private int NOT_FOUND = 404;
-    private int INTERNAL_SERVER_ERROR = 500;
+    private final int OK = 200;
+    private final int CREATED = 201;
+    private final int ACCEPTED = 202;
+    private final int NO_CONTENT = 204;
+    private final int BAD_REQUEST = 400;
+    private final int NOT_FOUND = 404;
+    private final int INTERNAL_SERVER_ERROR = 500;
 
-    private boolean POSITIVE = true;
-    private boolean NEGATIVE = false;
+    private final boolean POSITIVE = true;
+    private final boolean NEGATIVE = false;
 
 
     /* INSTANCE VARIABLES */
