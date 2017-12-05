@@ -6,8 +6,9 @@
  */
 public class BankAccountC {
 
+    // class constants
     private static final double MONTHLY_MAX_WITHDRAWALS = 3000.0;
-    private static final double MONTHLY_INTEREST_RATE = 0.002;
+    private static final double ANNUAL_INTEREST_RATE = 0.015;
     private static final double ANNUAL_ACCOUNT_COST = 25.0;
 
     // instance variables
@@ -22,6 +23,8 @@ public class BankAccountC {
         this.owner = new Util.Person(ownerName);
         this.totalAmount = initialAmount;
     }
+
+
 
     /**
      * Given an amount to withdraw, check if it is possible and
@@ -39,5 +42,21 @@ public class BankAccountC {
             return true;
         }
         else return false;
+    }
+
+
+
+    /**
+     * Performs end of year computations to add interest
+     * and send yearly account cost to owner
+     */
+    public void annualUpdate() {
+        double interest = this.totalAmount * ANNUAL_INTEREST_RATE;
+        this.totalAmount += interest;
+
+        String message = "Total amount at end of year: " + this.totalAmount + "\n" +
+                         "Interest at end of year: " + interest + "\n" +
+                         "Account cost: " + ANNUAL_ACCOUNT_COST + "\n";
+        this.owner.sendDocument(message);
     }
 }

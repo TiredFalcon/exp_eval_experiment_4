@@ -10,5 +10,9 @@ public class Util {
         public Person(String name) {
             this.name = name;
         }
+
+        public void sendDocument(String text) {
+            System.out.println("Sent document to " + this.name + ".\n\n" + text);
+        }
     }
 }
