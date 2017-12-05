@@ -14,6 +14,9 @@ public class BankAccountC {
     private static final double ANNUAL_ACCOUNT_COST     = 25.0;
     private static final double ACCOUNT_MAX_AMOUNT      = 100000.0;
 
+    private static final boolean SUCCESS                = true;
+    private static final boolean FAILURE                = false;
+
     // instance variables
     private double totalAmount;
     private double withdrawalsThisMonth;
@@ -43,9 +46,9 @@ public class BankAccountC {
         if ((withdrawalsThisMonth < MONTHLY_MAX_WITHDRAWALS) && (totalAmount - amount > 0)) {
             totalAmount -= amount;
             withdrawalsThisMonth += amount;
-            return true;
+            return SUCCESS;
         }
-        else return false;
+        else return FAILURE;
     }
 
 
@@ -61,9 +64,9 @@ public class BankAccountC {
     public boolean deposit(double amount) {
         if (this.totalAmount + amount <= ACCOUNT_MAX_AMOUNT) {
             totalAmount += amount;
-            return true;
+            return SUCCESS;
         }
-        else return false;
+        else return FAILURE;
     }
 
 
