@@ -32,8 +32,15 @@ public class Main {
 
 
         System.out.println("Running ApproximationC");
-        System.out.println("sin(pi/4) = " + ApproximationC.sin(ApproximationC.PI / 4.0));
-        System.out.println("e = " + ApproximationC.e());
+        System.out.println("sin(pi/4) = " + ApproximationC.sin(ApproximationC.PI / 4.0) + " (should be 0.7071067811883722)");
+        System.out.println("e = " + ApproximationC.e() + " (should be 2.7182818284590455)");
+        System.out.println();
+
+
+
+        System.out.println("Running ApproximationL");
+        System.out.println("sin(pi/4) = " + ApproximationL.sin(ApproximationL.PI / 4.0) + " (should be 0.7071067811883722)");
+        System.out.println("e = " + ApproximationL.e() + " (should be 2.7182818284590455)");
         System.out.println();
     }
 }
