@@ -2,14 +2,15 @@
  * Created by val on 05.12.17.
  */
 public class HTTP_ServerL {
+
     /* INSTANCE VARIABLES */
-    Util.Client connectedClient;
+    Util.Connection connection;
     Util.Database db;
 
 
     /* CONSTRUCTOR */
-    public HTTP_ServerL(Util.Client client, Util.Database db) {
-        this.connectedClient = client;
+    public HTTP_ServerL(Util.Database db) {
+        this.connection = new Util.Connection();
         this.db = db;
     }
 
@@ -20,37 +21,37 @@ public class HTTP_ServerL {
      *
      */
     public void handleRequest() {
-        String request = this.connectedClient.getRequest();
+        String request = this.connection.acceptRequest();
 
         int dbResponse = this.queryDB(request);
 
         switch (dbResponse) {
             case 200: {
-                respondToClient(200, true);
+                respondToClient(200);
                 break;
             }
             case 201: {
-                respondToClient(201, true);
+                respondToClient(201);
                 break;
             }
             case 202: {
-                respondToClient(202, true);
+                respondToClient(202);
                 break;
             }
             case 204: {
-                respondToClient(204, true);
+                respondToClient(204);
                 break;
             }
             case 400: {
-                respondToClient(400, false);
+                respondToClient(400);
                 break;
             }
             case 404: {
-                respondToClient(404, false);
+                respondToClient(404);
                 break;
             }
             case 500: {
-                respondToClient(500, false);
+                respondToClient(500);
                 break;
             }
 
@@ -72,10 +73,9 @@ public class HTTP_ServerL {
      * Respond to the currently connected client.
      *
      * @param statusCode The statuscode that will be sent to the client.
-     * @param accept A boolean that indicates if the request has been accepted or not.
      */
-    public void respondToClient(int statusCode, boolean accept) {
-        if (accept) connectedClient.acceptResponse(statusCode);
-        else connectedClient.rejectResponse(statusCode);
+    public void respondToClient(int statusCode) {
+        connection.sendResponse(statusCode);
+        connection.close();
     }
 }

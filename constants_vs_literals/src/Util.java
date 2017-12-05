@@ -16,20 +16,21 @@ public class Util {
         }
     }
 
-    static public class Client {
-        public Client() {
+    static public class Connection {
+        public Connection() {
 
         }
 
-        public void acceptResponse(int status) {
+        public void sendResponse(int status) {
             // blub
         }
 
-        public void rejectResponse(int status) {
-            // blub
+        public void close() {
+            // stuff
         }
 
-        public String getRequest() {
+
+        public String acceptRequest() {
             return "request";
         }
     }

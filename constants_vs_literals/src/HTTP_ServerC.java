@@ -12,18 +12,16 @@ public class HTTP_ServerC {
     private final int NOT_FOUND = 404;
     private final int INTERNAL_SERVER_ERROR = 500;
 
-    private final boolean POSITIVE = true;
-    private final boolean NEGATIVE = false;
 
 
     /* INSTANCE VARIABLES */
-    Util.Client connectedClient;
+    Util.Connection connection;
     Util.Database db;
 
 
     /* CONSTRUCTOR */
-    public HTTP_ServerC(Util.Client client, Util.Database db) {
-        this.connectedClient = client;
+    public HTTP_ServerC(Util.Database db) {
+        this.connection = new Util.Connection();
         this.db = db;
     }
 
@@ -34,37 +32,37 @@ public class HTTP_ServerC {
      *
      */
     public void handleRequest() {
-        String request = this.connectedClient.getRequest();
+        String request = this.connection.acceptRequest();
 
         int dbResponse = this.queryDB(request);
 
         switch (dbResponse) {
             case OK: {
-                respondToClient(OK, true);
+                respondToClient(OK);
                 break;
             }
             case CREATED: {
-                respondToClient(CREATED, POSITIVE);
+                respondToClient(CREATED);
                 break;
             }
             case ACCEPTED: {
-                respondToClient(ACCEPTED, POSITIVE);
+                respondToClient(ACCEPTED);
                 break;
             }
             case NO_CONTENT: {
-                respondToClient(NO_CONTENT, POSITIVE);
+                respondToClient(NO_CONTENT);
                 break;
             }
             case BAD_REQUEST: {
-                respondToClient(BAD_REQUEST, NEGATIVE);
+                respondToClient(BAD_REQUEST);
                 break;
             }
             case NOT_FOUND: {
-                respondToClient(NOT_FOUND, NEGATIVE);
+                respondToClient(NOT_FOUND);
                 break;
             }
             case INTERNAL_SERVER_ERROR: {
-                respondToClient(INTERNAL_SERVER_ERROR, NEGATIVE);
+                respondToClient(INTERNAL_SERVER_ERROR);
                 break;
             }
 
@@ -86,10 +84,9 @@ public class HTTP_ServerC {
      * Respond to the currently connected client.
      *
      * @param statusCode The statuscode that will be sent to the client.
-     * @param accept A boolean that indicates if the request has been accepted or not.
      */
-    public void respondToClient(int statusCode, boolean accept) {
-        if (accept) connectedClient.acceptResponse(statusCode);
-        else connectedClient.rejectResponse(statusCode);
+    public void respondToClient(int statusCode) {
+        connection.sendResponse(statusCode);
+        connection.close();
     }
 }
