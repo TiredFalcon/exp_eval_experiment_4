@@ -15,4 +15,34 @@ public class Util {
             System.out.println("Sent document to " + this.name + ".\n\n" + text);
         }
     }
+
+    static public class Client {
+        public Client() {
+
+        }
+
+        public void acceptResponse(int status) {
+            // blub
+        }
+
+        public void rejectResponse(int status) {
+            // blub
+        }
+
+        public String getRequest() {
+            return "request";
+        }
+    }
+
+    static public class Database {
+        public Database() {
+
+        }
+
+        public int query(String queryString) {
+            return 0;
+        }
+
+
+    }
 }
