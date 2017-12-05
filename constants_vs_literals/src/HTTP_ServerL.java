@@ -1,28 +1,14 @@
 /**
  * Created by val on 05.12.17.
  */
-public class HTTP_ServerC {
-
-    /* CONSTANTS */
-    private final int OK = 200;
-    private final int CREATED = 201;
-    private final int ACCEPTED = 202;
-    private final int NO_CONTENT = 204;
-    private final int BAD_REQUEST = 400;
-    private final int NOT_FOUND = 404;
-    private final int INTERNAL_SERVER_ERROR = 500;
-
-    private final boolean POSITIVE = true;
-    private final boolean NEGATIVE = false;
-
-
+public class HTTP_ServerL {
     /* INSTANCE VARIABLES */
     Util.Client connectedClient;
     Util.Database db;
 
 
     /* CONSTRUCTOR */
-    public HTTP_ServerC(Util.Client client, Util.Database db) {
+    public HTTP_ServerL(Util.Client client, Util.Database db) {
         this.connectedClient = client;
         this.db = db;
     }
@@ -39,32 +25,32 @@ public class HTTP_ServerC {
         int dbResponse = this.queryDB(request);
 
         switch (dbResponse) {
-            case OK: {
-                respondToClient(OK, true);
+            case 200: {
+                respondToClient(200, true);
                 break;
             }
-            case CREATED: {
-                respondToClient(CREATED, POSITIVE);
+            case 201: {
+                respondToClient(201, true);
                 break;
             }
-            case ACCEPTED: {
-                respondToClient(ACCEPTED, POSITIVE);
+            case 202: {
+                respondToClient(202, true);
                 break;
             }
-            case NO_CONTENT: {
-                respondToClient(NO_CONTENT, POSITIVE);
+            case 204: {
+                respondToClient(204, true);
                 break;
             }
-            case BAD_REQUEST: {
-                respondToClient(BAD_REQUEST, NEGATIVE);
+            case 400: {
+                respondToClient(400, false);
                 break;
             }
-            case NOT_FOUND: {
-                respondToClient(NOT_FOUND, NEGATIVE);
+            case 404: {
+                respondToClient(404, false);
                 break;
             }
-            case INTERNAL_SERVER_ERROR: {
-                respondToClient(INTERNAL_SERVER_ERROR, NEGATIVE);
+            case 500: {
+                respondToClient(500, false);
                 break;
             }
 
