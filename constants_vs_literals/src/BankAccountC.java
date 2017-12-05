@@ -6,30 +6,38 @@
  */
 public class BankAccountC {
 
-    private static final double MONTHLY_MAX_WITHDRAWAL = 3000.0;
+    private static final double MONTHLY_MAX_WITHDRAWALS = 3000.0;
     private static final double MONTHLY_INTEREST_RATE = 0.002;
     private static final double ANNUAL_ACCOUNT_COST = 25.0;
 
     // instance variables
-    private int totalAmount;
-    private int withdrawalsThisMonth;
+    private double totalAmount;
+    private double withdrawalsThisMonth;
+    private Util.Person owner;
 
     /**
      * Constructor for objects of class BankAccountC
      */
-    public BankAccountC() {
-        // initialise instance variables
+    public BankAccountC(String ownerName, double initialAmount) {
+        this.owner = new Util.Person(ownerName);
+        this.totalAmount = initialAmount;
     }
 
     /**
-     * An example of a method - replace this comment with your own
+     * Given an amount to withdraw, check if it is possible and
+     * if yes perform the withdrawal and return true if successful,
+     * otherwise return false
      *
-     * @param  y   a sample parameter for a method
-     * @return     the sum of x and y
+     * @param amount the amount to withdraw
+     * @return if the withdrawal was successful
      */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return y;
+    public boolean withdraw(double amount) {
+        // if monthly amount available and enough money in account
+        if ((withdrawalsThisMonth < MONTHLY_MAX_WITHDRAWALS) && (totalAmount - amount > 0)) {
+            totalAmount -= amount;
+            withdrawalsThisMonth += amount;
+            return true;
+        }
+        else return false;
     }
 }
