@@ -57,6 +57,7 @@ public class ApproximationC {
 
     /**
      * Compute an approximated value of e (Euler's number)
+     * using an infinite series up to a set number of terms
      *
      * @return the value of e
      */
