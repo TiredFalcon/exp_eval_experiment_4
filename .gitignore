@@ -1,2 +1,3 @@
 # ignore build
 constants_vs_literals/out/
+constants_vs_literals/.idea/workspace.xml

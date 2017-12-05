@@ -12,7 +12,7 @@ public class Util {
         }
 
         public void sendDocument(String text) {
-            System.out.println("Sent document to " + this.name + ".\n\n" + text);
+            System.out.println("Sent document to " + this.name + ".\n" + text);
         }
     }
 
