@@ -11,6 +11,7 @@ public class HTTP_ServerC {
     private final int BAD_REQUEST = 400;
     private final int NOT_FOUND = 404;
     private final int INTERNAL_SERVER_ERROR = 500;
+    private final int DB_ERROR = -1;
 
 
 
@@ -34,35 +35,25 @@ public class HTTP_ServerC {
     public void handleRequest() {
         String request = this.connection.acceptRequest();
 
+        if (request.equals("index.html")) {
+            respondToClient(OK);
+            return;
+        }
+
         int dbResponse = this.queryDB(request);
 
+        if (dbResponse == DB_ERROR) {
+            respondToClient(INTERNAL_SERVER_ERROR);
+            return;
+        }
+
         switch (dbResponse) {
-            case OK: {
-                respondToClient(OK);
-                break;
-            }
             case CREATED: {
                 respondToClient(CREATED);
                 break;
             }
-            case ACCEPTED: {
-                respondToClient(ACCEPTED);
-                break;
-            }
-            case NO_CONTENT: {
-                respondToClient(NO_CONTENT);
-                break;
-            }
-            case BAD_REQUEST: {
-                respondToClient(BAD_REQUEST);
-                break;
-            }
             case NOT_FOUND: {
                 respondToClient(NOT_FOUND);
-                break;
-            }
-            case INTERNAL_SERVER_ERROR: {
-                respondToClient(INTERNAL_SERVER_ERROR);
                 break;
             }
 

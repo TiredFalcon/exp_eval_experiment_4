@@ -23,35 +23,25 @@ public class HTTP_ServerL {
     public void handleRequest() {
         String request = this.connection.acceptRequest();
 
+        if (request.equals("index.html")) {
+            respondToClient(200);
+            return;
+        }
+
         int dbResponse = this.queryDB(request);
 
+        if (dbResponse == -1) {
+            respondToClient(500);
+            return;
+        }
+
         switch (dbResponse) {
-            case 200: {
-                respondToClient(200);
-                break;
-            }
             case 201: {
                 respondToClient(201);
                 break;
             }
-            case 202: {
-                respondToClient(202);
-                break;
-            }
-            case 204: {
-                respondToClient(204);
-                break;
-            }
-            case 400: {
-                respondToClient(400);
-                break;
-            }
             case 404: {
                 respondToClient(404);
-                break;
-            }
-            case 500: {
-                respondToClient(500);
                 break;
             }
 
