@@ -36,28 +36,28 @@ public class ConverterL {
     }
 
     /**
-     * Converts seconds to a string of years days hours, minutes and seconds.
+     * Converts seconds to a time string.
      *
      * @param amount the number of seconds
-     * @return Returns a string in the format y::d::h::m::s
+     * @return Returns a string of the time.
      */
     public String convert_seconds(double amount) {
         String result = "";
 
         double years = Math.floor(amount * 0.000000031709);
-        amount -= years;
+        amount -= years * 1.0/0.000000031709;
         result += years + "::";
 
         double days = Math.floor(amount * 0.0000115741);
-        amount -= days;
+        amount -= days * 1.0/0.0000115741;
         result += days + "::";
 
         double hours = Math.floor(amount * 0.000277778);
-        amount -= hours;
+        amount -= hours * 1.0/0.000277778;
         result += hours + "::";
 
         double minutes = Math.floor(amount * 0.0166667);
-        amount -= minutes;
+        amount -= minutes * 1.0/0.0166667;
         result += minutes + "::";
 
         result += amount;

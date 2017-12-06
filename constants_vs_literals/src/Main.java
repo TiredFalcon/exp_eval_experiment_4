@@ -42,5 +42,13 @@ public class Main {
         System.out.println("sin(pi/4) = " + ApproximationL.sin(ApproximationL.PI / 4.0) + " (should be 0.7071067811883722)");
         System.out.println("e = " + ApproximationL.e() + " (should be 2.7182818284590455)");
         System.out.println();
+
+
+
+        System.out.println("Running ConverterC");
+        ConverterC converterC = new ConverterC();
+        System.out.println("536567.0 seconds = " + converterC.convert_seconds(536567.0) + " (should be 0.7071067811883722)");
+        System.out.println("e = " + ApproximationL.e() + " (should be 2.7182818284590455)");
+        System.out.println();
     }
 }
