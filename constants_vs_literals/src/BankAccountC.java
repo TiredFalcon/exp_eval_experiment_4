@@ -43,7 +43,7 @@ public class BankAccountC {
      * @return if the withdrawal was successful
      */
     public boolean withdraw(double amount) {
-        if ((this.withdrawalsThisMonth < MONTHLY_MAX_WITHDRAWALS) && (this.totalAmount - amount > 0)) {
+        if ((this.withdrawalsThisMonth + amount <= MONTHLY_MAX_WITHDRAWALS) && (this.totalAmount - amount >=0)) {
             this.totalAmount -= amount;
             this.withdrawalsThisMonth += amount;
             return SUCCESS;
