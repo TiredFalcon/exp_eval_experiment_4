@@ -34,9 +34,9 @@ public class BankAccountL {
      * @return if the withdrawal was successful
      */
     public boolean withdraw(double amount) {
-        if ((withdrawalsThisMonth < 3000.0) && (totalAmount - amount > 0)) {
-            totalAmount -= amount;
-            withdrawalsThisMonth += amount;
+        if ((this.withdrawalsThisMonth < 3000.0) && (this.totalAmount - amount > 0)) {
+            this.totalAmount -= amount;
+            this.withdrawalsThisMonth += amount;
             return true;
         }
         else return false;
@@ -54,7 +54,7 @@ public class BankAccountL {
      */
     public boolean deposit(double amount) {
         if (this.totalAmount + amount <= 100000.0) {
-            totalAmount += amount;
+            this.totalAmount += amount;
             return true;
         }
         else return false;

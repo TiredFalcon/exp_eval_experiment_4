@@ -43,9 +43,9 @@ public class BankAccountC {
      * @return if the withdrawal was successful
      */
     public boolean withdraw(double amount) {
-        if ((withdrawalsThisMonth < MONTHLY_MAX_WITHDRAWALS) && (totalAmount - amount > 0)) {
-            totalAmount -= amount;
-            withdrawalsThisMonth += amount;
+        if ((this.withdrawalsThisMonth < MONTHLY_MAX_WITHDRAWALS) && (this.totalAmount - amount > 0)) {
+            this.totalAmount -= amount;
+            this.withdrawalsThisMonth += amount;
             return SUCCESS;
         }
         else return FAILURE;
@@ -63,7 +63,7 @@ public class BankAccountC {
      */
     public boolean deposit(double amount) {
         if (this.totalAmount + amount <= ACCOUNT_MAX_AMOUNT) {
-            totalAmount += amount;
+            this.totalAmount += amount;
             return SUCCESS;
         }
         else return FAILURE;

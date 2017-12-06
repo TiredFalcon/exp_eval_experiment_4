@@ -12,7 +12,7 @@ public class Util {
         }
 
         public void sendDocument(String text) {
-            System.out.println("Sent document to " + this.name + ".\n" + text);
+            System.out.println("Sent annual report document to " + this.name + ".\n" + "\u001B[32m" + text + "\u001B[0m");
         }
     }
 
