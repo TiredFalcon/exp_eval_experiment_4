@@ -1,7 +1,19 @@
 /**
  * Created by val on 05.12.17.
  */
-public class HTTP_ServerL {
+public class HTTPServerC {
+
+    /* CONSTANTS */
+    private final int OK = 200;
+    private final int CREATED = 201;
+    private final int ACCEPTED = 202;
+    private final int NO_CONTENT = 204;
+    private final int BAD_REQUEST = 400;
+    private final int NOT_FOUND = 404;
+    private final int INTERNAL_SERVER_ERROR = 500;
+    private final int DB_ERROR = -1;
+
+
 
     /* INSTANCE VARIABLES */
     Util.Connection connection;
@@ -9,7 +21,7 @@ public class HTTP_ServerL {
 
 
     /* CONSTRUCTOR */
-    public HTTP_ServerL(Util.Database db) {
+    public HTTPServerC(Util.Database db) {
         this.connection = new Util.Connection();
         this.db = db;
     }
@@ -24,24 +36,24 @@ public class HTTP_ServerL {
         String request = this.connection.acceptRequest();
 
         if (request.equals("index.html")) {
-            respondToClient(200);
+            respondToClient(OK);
             return;
         }
 
         int dbResponse = this.queryDB(request);
 
-        if (dbResponse == -1) {
-            respondToClient(500);
+        if (dbResponse == DB_ERROR) {
+            respondToClient(INTERNAL_SERVER_ERROR);
             return;
         }
 
         switch (dbResponse) {
-            case 201: {
-                respondToClient(201);
+            case CREATED: {
+                respondToClient(CREATED);
                 break;
             }
-            case 404: {
-                respondToClient(404);
+            case NOT_FOUND: {
+                respondToClient(NOT_FOUND);
                 break;
             }
 
